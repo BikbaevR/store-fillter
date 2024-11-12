@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Список товаров</h2>
+  <form method="get">
+    {{ form.as_p }}
+    <button type="submit">Фильтр</button>
+  </form>
+
+  <div>
+    {% for product in products %}
+      <div>
+        <h3>{{ product.name }}</h3>
+        <p>Цена: {{ product.price }}</p>
+        <p>Наличие: {{ product.in_stock|yesno:"Есть в наличии,Нет в наличии" }}</p>
+        <p>Категория: {{ product.category.name }}</p>
+        <p>Бренд: {{ product.brand.name }}</p>
+      </div>
+    {% empty %}
+      <p>Нет товаров, соответствующих условиям фильтрации.</p>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
